@@ -27,7 +27,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
   console.log('Mongoose is connected');
-})
+});
 
 // Routes
 app.get('/', (request, response) => {
@@ -39,16 +39,12 @@ app.get('*', (request, response) => {
 });
 
 // ERROR HANDLER
-app.use((error, request, response, next) => {
-console.log(error.message);
+app.use((error, request, response, next ) => {
+  console.log(error.message);
   response.status(500).send(error.message);
-})
-
-
-
+});
 
 app.get('/test', (request, response) => {
-  response.send('test request received')
-})
+  response.send('test request received');
+});
 
-app.listen(PORT, () => console.log(`listening on Port ${PORT}`));
